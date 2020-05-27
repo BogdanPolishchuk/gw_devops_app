@@ -14,7 +14,6 @@
       - name: Copy proj to folder
 #        include_vars:
 #          file: /home/ansible/roles/provisioning/vars/main.yaml
-#          name: stuff
         copy:
           src: v_1.jar
           dest: /home/{{ username }}/for_javabuild/v_1.jar
