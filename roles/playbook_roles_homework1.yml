@@ -1,0 +1,7 @@
+---
+- name: the same by roles!
+  hosts: homework1
+
+
+  roles:
+    - { role: homework1, when: ansible_system == 'Linux' }

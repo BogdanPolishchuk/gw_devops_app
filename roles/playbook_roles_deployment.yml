@@ -1,0 +1,7 @@
+---
+- name: the same by roles!
+  hosts: grad_test
+
+
+  roles:
+    - { role: deployment, when: ansible_system == 'Linux' }

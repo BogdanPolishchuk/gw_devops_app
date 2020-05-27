@@ -1,0 +1,27 @@
+---
+# tasks file for homework1
+  - name: Print OS version
+    debug: var=ansible_os_family
+
+  - block: #=========Block for REDHAT============
+
+      - name: Install Apache Web Server RedHat
+        yum: name=httpd state=latest
+
+
+      - name: Start WEB Server RedHat
+        shell: /usr/sbin/httpd -k start
+
+    when: ansible_os_family == "RedHat"
+
+  - block: #=========Block for DEBIAN============
+
+      - name: Install NginX Web Server Debian
+        apt: name=nginx state=latest
+
+
+      - name: Start WEB Server Debian
+        service: name=nginx state=started enabled=yes
+
+    when: ansible_os_family == "Debian"
+
