@@ -1,0 +1,12 @@
+---
+- hosts: ansibleClient1
+#  vars:
+#    http_port: 80
+  gather_facts: true
+  roles:
+    - { role: provisioning }
+
+- hosts: ansibleClient1
+  gather_facts: false
+  roles:
+    - { role: deployment }
