@@ -1,0 +1,20 @@
+#!groovy
+//1 pipeline file
+properties([disableConcurentBuilds()])
+
+pipeline {
+    agent {
+        label 'master'
+    }
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    timestamp()
+    }
+    stages {
+        stage("testStep") {
+            sters {
+                sh 'ssh root@ub1 \'hostname\''
+            }
+        }
+    }
+}
