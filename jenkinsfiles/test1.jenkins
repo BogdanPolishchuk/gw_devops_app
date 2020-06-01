@@ -12,7 +12,7 @@ pipeline {
     }
     stages {
         stage("testStep") {
-            sters {
+            steps {
                 sh 'ssh root@ub1 \'hostname\''
             }
         }
