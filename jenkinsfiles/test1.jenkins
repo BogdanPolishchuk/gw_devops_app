@@ -16,5 +16,10 @@ pipeline {
                 sh 'ssh root@ub1 \'hostname\''
             }
         }
+        stage("test2Step") {
+            steps {
+                sh 'ssh root@ub1 \'ls -la\''
+            }
+        }
     }
 }
