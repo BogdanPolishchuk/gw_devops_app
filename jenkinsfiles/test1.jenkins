@@ -1,6 +1,6 @@
 #!groovy
 //1 pipeline file
-properties([disableConcurentBuilds()])
+properties([disableConcurrentBuilds()])
 
 pipeline {
     agent {
@@ -8,12 +8,17 @@ pipeline {
     }
     options {
     buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-    timestamp()
+    timestamps()
     }
     stages {
         stage("testStep") {
-            sters {
+            steps {
                 sh 'ssh root@ub1 \'hostname\''
+            }
+        }
+        stage("test2Step") {
+            steps {
+                sh 'ssh root@ub1 \'ls -la\''
             }
         }
     }
