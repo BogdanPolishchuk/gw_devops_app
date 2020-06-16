@@ -1,0 +1,47 @@
+properties([
+    parameters([
+        gitParameter(branch: '',
+                     branchFilter: 'origin/(.*)',
+                     defaultValue: 'master',
+                     description: '',
+                     name: 'BRANCH',
+                     quickFilterEnabled: false,
+                     selectedValue: 'NONE',
+                     sortMode: 'NONE',
+                     tagFilter: '*',
+                     type: 'PT_BRANCH')
+    ])
+])
+node {
+    stage("Clean"){
+        sh "uptime"
+        deleteDir()
+    }
+
+    stage("Git Clone"){
+    
+      sh "git clone -b ${params.BRANCH} https://github.com/BogdanPolishchuk/gw_devops_app.git . --depth 1"
+    
+    }
+
+    stage("Build"){
+        println("Test Test Test Test")
+    }
+
+    stage("Upload to Nexus"){
+        println("Test Test Test Test")
+    }
+
+    stage("Black Box test"){
+        println("Test Test Test Test")
+    }
+
+    stage("Deploy"){
+        println("Test Test Test Test")
+    }
+
+    stage("UiTest"){
+        println("Test Test Test Test")
+    }
+}
+	
