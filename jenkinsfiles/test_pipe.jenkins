@@ -18,7 +18,7 @@ node {
         deleteDir()
     }
 
-    stage("Build"){
+    stage("current_path"){
         sh "pwd"
     }
 
@@ -29,7 +29,7 @@ node {
     }
 
     stage("Build"){
-        println("Test Test Test Test")
+        sh "ls -la"
     }
 
     stage("Upload to Nexus"){
