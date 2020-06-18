@@ -18,6 +18,10 @@ node {
         deleteDir()
     }
 
+    stage("Build"){
+        sh "pwd"
+    }
+
     stage("Git Clone"){
     
       sh "git clone -b ${params.BRANCH} https://github.com/BogdanPolishchuk/gw_devops_app.git . --depth 1"
