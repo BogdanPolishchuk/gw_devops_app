@@ -29,7 +29,13 @@ node {
     }
 
     stage("Build"){
-        sh "ls -la"
+        sh "ls -la ; cd ./java_app ; ls -la"
+    }
+    
+    stage("Build_2"){
+        sh "sudo mvn clean install"
+//        def mvnHome = tool name: 'mvn3', type: 'maven'
+//        sh "${mvnHome} clean install"
     }
 
     stage("Upload to Nexus"){
