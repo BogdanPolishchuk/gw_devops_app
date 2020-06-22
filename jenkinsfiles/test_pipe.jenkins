@@ -33,7 +33,7 @@ node {
     }
     
     stage("Build_2"){
-        sh "sudo mvn clean install"
+        sh "mvn clean install"
 //        def mvnHome = tool name: 'mvn3', type: 'maven'
 //        sh "${mvnHome} clean install"
     }
