@@ -35,7 +35,6 @@ node {
     stage("UPLOAD ARTIFACT"){
         archiveArtifacts artifacts: 'java_app/target/*.jar', onlyIfSuccessful: true
     }
-    }
 
     stage("Black Box test"){
         println("Test Test Test Test")
