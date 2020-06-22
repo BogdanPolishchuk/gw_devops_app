@@ -36,8 +36,12 @@ node {
         archiveArtifacts artifacts: 'java_app/target/*.jar', onlyIfSuccessful: true
     }
 
- stage("RENAME"){
+    stage("RENAME"){
         sh "cd /var/lib/jenkins/jobs/test1/builds/${BUILD_NUMBER}/archive/java_app/target/ ; mv spring-boot-sample-web-ui-2.2.6.RELEASE.jar app-ver.${BUILD_NUMBER}.jar"
+    }
+
+    stage("PWD"){
+        sh "pwd"
     }
 
     stage("Deploy"){
