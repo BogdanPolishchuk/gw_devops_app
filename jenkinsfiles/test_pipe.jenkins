@@ -22,24 +22,19 @@ node {
         sh "pwd"
     }
 
-    stage("Git Clone"){
+    stage("CHECKOUT"){
     
       sh "git clone -b ${params.BRANCH} https://github.com/BogdanPolishchuk/gw_devops_app.git . --depth 1"
     
     }
 
-    stage("Build"){
-        sh "ls -la ; cd ./java_app ; ls -la"
+    stage("BUILD"){
+        sh "ls -la ; cd java_app&&mvn clean install"
     }
     
-    stage("Build_2"){
-        sh "mvn clean install"
-//        def mvnHome = tool name: 'mvn3', type: 'maven'
-//        sh "${mvnHome} clean install"
+    stage("UPLOAD ARTIFACT"){
+        archiveArtifacts artifacts: 'java_app/target/*.jar', onlyIfSuccessful: true
     }
-
-    stage("Upload to Nexus"){
-        println("Test Test Test Test")
     }
 
     stage("Black Box test"){
