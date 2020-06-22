@@ -45,7 +45,7 @@ node {
     }
 
     stage("Deploy"){
-        println("Test Test Test Test")
+        sh "ls -lh ; cd ansible_roles&&ansible ansibleClient1 -m ping"
     }
 
     stage("UiTest"){
