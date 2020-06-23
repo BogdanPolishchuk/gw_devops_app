@@ -9,7 +9,8 @@ properties([
                      selectedValue: 'NONE',
                      sortMode: 'NONE',
                      tagFilter: '*',
-                     type: 'PT_BRANCH')
+                     type: 'PT_BRANCH'),
+	string(defaultValue: '8888', description: 'Enter port number', name: 'PORT', trim: false)
     ])
 ])
 node {
@@ -20,6 +21,10 @@ node {
 
     stage("current_path"){
         sh "pwd"
+    }
+    
+    stage("check ports number"){
+        sh "echo ${params.PORT}"
     }
 
     stage("CHECKOUT"){
