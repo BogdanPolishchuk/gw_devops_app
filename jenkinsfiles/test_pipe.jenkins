@@ -45,11 +45,11 @@ node {
     }
 
     stage("BUILD Number"){
-        sh "echo '    build_number: ${BUILD_NUMBER}' >> ./ansible_roles/group_vars/jBuildNum.yml"
+        sh "echo '    build_number: ${BUILD_NUMBER}' >> ./ansible_roles/group_vars/all.yml"
     }
     
     stage("CHECK FILE"){
-        sh "cat ./ansible_roles/group_vars/jBuildNum.yml"
+        sh "cat ./ansible_roles/group_vars/all.yml"
     }
 
     stage("Deploy"){
