@@ -8,14 +8,14 @@
 
       - name: Copy proj to folder
         copy:
-          src: v_1.jar
-          dest: /home/{{ username }}/for_javabuild/v_1.jar
+          src: /var/lib/jenkins/jobs/test1/builds/{{ build_number }}/archive/java_app/target/app-ver.{{ build_number }}.jar
+          dest: /home/{{ username }}/for_javabuild/app-ver.{{ build_number }}.jar
           owner: "{{ username }}"
           group: "{{ username }}"
           mode: '0644'
 
       - name: Run jar-file
-        shell: "nohup java -jar /home/{{ username }}/for_javabuild/v_1.jar --server.port={{ port }} &"
+        shell: "nohup java -jar /home/{{ username }}/for_javabuild/app-ver.{{ build_number }}.jar --server.port={{ port }} &"
         register: status1
 
       - debug:
