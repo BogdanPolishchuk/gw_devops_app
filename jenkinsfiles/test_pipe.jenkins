@@ -44,6 +44,14 @@ node {
         sh "pwd"
     }
 
+    stage("BUILD Number"){
+        sh "echo '    build_number: ${BUILD_NUMBER}' >> ./ansible_roles/group_vars/jBuildNum.yml"
+    }
+    
+    stage("CHECK FILE"){
+        sh "cat ./ansible_roles/group_vars/jBuildNum.yml"
+    }
+
     stage("Deploy"){
         sh "ls -lh ; cd ansible_roles&&ansible ansibleClient1 -m ping"
     }
