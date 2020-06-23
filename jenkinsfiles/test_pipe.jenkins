@@ -61,8 +61,8 @@ node {
         sh "ls -lh ; cd ansible_roles&&ansible-playbook service.yml --extra-vars 'port=${params.PORT}'"
     }
 
-    stage("UiTest"){
-        println("Test Test Test Test")
+    stage("Availability test"){
+        sh "curl -I http://172.33.33.2:${params.PORT}"
     }
 }
 	
