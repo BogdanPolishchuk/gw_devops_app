@@ -57,8 +57,8 @@ node {
         sh "cat ./ansible_roles/group_vars/all.yml"
     }
 
-    stage("Deploy"){
-        sh "ls -lh ; cd ansible_roles&&ansible ansibleClient1 -m ping"
+    stage("CI DEPLOY"){
+        sh "ls -lh ; cd ansible_roles&&ansible-playbook service.yml --extra-vars 'port=${params.PORT}'"
     }
 
     stage("UiTest"){
