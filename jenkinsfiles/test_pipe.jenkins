@@ -16,8 +16,7 @@ properties([
 node {
 
     stage("Checkout SCM") {
-            steps {
-                checkout([
+            checkout([
                  $class: 'GitSCM',
                  branches: [[name: 'master']],
                  userRemoteConfigs: [[
@@ -25,7 +24,6 @@ node {
                     credentialsId: '',
                  ]]
                 ])
-            }
     }
 
     stage("Clean"){
