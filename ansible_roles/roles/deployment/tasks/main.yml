@@ -8,7 +8,7 @@
 
       - name: Copy proj to folder
         copy:
-          src: /var/lib/jenkins/jobs/test1/builds/{{ build_number }}/archive/java_app/target/app-ver.{{ build_number }}.jar
+          src: /var/lib/jenkins/jobs/{{ job_name }}/builds/{{ build_number }}/archive/java_app/target/app-ver.{{ build_number }}.jar
           dest: /home/{{ username }}/for_javabuild/app-ver.{{ build_number }}.jar
           owner: "{{ username }}"
           group: "{{ username }}"
