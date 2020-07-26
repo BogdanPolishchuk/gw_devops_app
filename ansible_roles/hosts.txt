@@ -1,2 +1,0 @@
-[CI_servers]
-ansibleClient1   ansible_hosts=172.33.33.2  ansible_user=root
