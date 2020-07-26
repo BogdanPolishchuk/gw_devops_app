@@ -58,7 +58,7 @@ node {
     }
 
     stage("ADD HOSTS"){
-        sh "cp /hosts.txt hosts.txt"
+        sh "cp /hosts.txt ./ansible_roles/hosts.txt"
     }
 
     stage("CI DEPLOY"){
