@@ -1,6 +1,5 @@
 properties([
     pipelineTriggers([githubPush()]),
-    git([url: 'https://github.com/BogdanPolishchuk/gw_devops_app.git', branch: 'master'])
     parameters([
         gitParameter(branch: '',
                      branchFilter: 'origin/(.*)',
@@ -18,14 +17,15 @@ properties([
 node {
 
     stage("Checkout SCM") {
-            checkout([
-                 $class: 'GitSCM',
-                 branches: [[name: 'master']],
-                 userRemoteConfigs: [[
-                    url: 'https://github.com/BogdanPolishchuk/gw_devops_app.git',
-                    credentialsId: '',
-                 ]]
-                ])
+        checkout scm
+//            checkout([
+//                 $class: 'GitSCM',
+//                 branches: [[name: 'master']],
+//                 userRemoteConfigs: [[
+//                    url: 'https://github.com/BogdanPolishchuk/gw_devops_app.git',
+//                    credentialsId: '',
+//                 ]]
+//                ])
     }
 
     stage("Clean"){
