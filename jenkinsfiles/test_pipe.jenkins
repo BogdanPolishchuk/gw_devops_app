@@ -27,7 +27,7 @@ node {
                 ])
     }
 
-    stage("Clean!"){
+    stage("Clean"){
         sh "uptime"
         deleteDir()
     }
