@@ -57,6 +57,10 @@ node {
         sh "cat ./ansible_roles/group_vars/all.yml"
     }
 
+    stage("ADD HOSTS"){
+        sh "cp /hosts.txt hosts.txt"
+    }
+
     stage("CI DEPLOY"){
         sh "ls -lh ; cd ansible_roles&&ansible-playbook service.yml --extra-vars 'port=${params.PORT}'"
     }
