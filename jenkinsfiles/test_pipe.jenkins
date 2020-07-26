@@ -46,15 +46,19 @@ node {
     }
 
     stage("RENAME"){
-        sh "cd /var/lib/jenkins/jobs/gw1/builds/${BUILD_NUMBER}/archive/java_app/target/ ; mv spring-boot-sample-web-ui-2.2.6.RELEASE.jar app-ver.${BUILD_NUMBER}.jar"
+        sh "cd /var/lib/jenkins/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/archive/java_app/target/ ; mv spring-boot-sample-web-ui-2.2.6.RELEASE.jar app-ver.${BUILD_NUMBER}.jar"
     }
 
     stage("PWD"){
         sh "pwd"
     }
 
-    stage("BUILD Number"){
+    stage("BUILD Number to VARs"){
         sh "echo '    build_number: ${BUILD_NUMBER}' >> ./ansible_roles/group_vars/all.yml"
+    }
+    
+    stage("JOB Name to VARs"){
+        sh "echo '    job_name: ${JOB_NAME}' >> ./ansible_roles/group_vars/all.yml"
     }
     
     stage("CHECK FILE"){
