@@ -1,5 +1,6 @@
 properties([
     pipelineTriggers([githubPush()]),
+    git([url: 'https://github.com/BogdanPolishchuk/gw_devops_app.git', branch: 'master'])
     parameters([
         gitParameter(branch: '',
                      branchFilter: 'origin/(.*)',
