@@ -1,6 +1,24 @@
 ---
 # tasks file for provisioning
+
+  - name: Check Java
+    shell: java -version
+    register: var1
+    ignore_errors: yes
+
+  - debug:
+      var: var1.rc
+
+  - block: #==check Java version==
+
+      - name: APT repository
+        apt:
+          update_cache: yes
+
+    when: var1.rc == 127
+
   - name: Print OS version
+    become: yes
     debug: var=ansible_os_family
 
   - block: #=========Block for DEBIAN============
