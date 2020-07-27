@@ -25,13 +25,12 @@ pipeline {
             }
         }
         
-        stage("copy artefact") {
-            steps {
-                echo "======= start building image ======="
-                sh 'cd Dockerfiles; pwd'
-
-            }
-        }
+//        stage("copy artefact") {
+//            steps {
+//                echo "======= start building image ======="
+//                sh 'cd Dockerfiles; pwd'
+//            }
+//        }
         
         stage("create docker image") {
             steps {
