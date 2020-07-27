@@ -43,7 +43,7 @@ pipeline {
                 dir ('Dokerfiles') {
                     sh "pwd"
                     sh "echo 'ADD app-ver.${params.NBUID}.jar /java_project/' >> Dockerfile"
-                    sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar"]' >> Dockerfile"
+//                    sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar"]' >> Dockerfile"
 //                   sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar", "--server.port=${params.PORT}"]' >> Dockerfile"
                 }
                 
