@@ -30,7 +30,7 @@ pipeline {
         stage("copy artefact") {
             steps {
                 echo "======= copy artefact ======="
-                sh 'ls -la /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/'
+                sh "ls -la /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/"
 //                sh 'cp /var/lib/jenkins/jobs/grw1/builds/2/archive/java_app/target/app-ver.2.jar ./Dokerfiles'
             }
         }
