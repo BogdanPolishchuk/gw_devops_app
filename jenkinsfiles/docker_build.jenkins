@@ -18,23 +18,22 @@ pipeline {
     timestamps()
     }
     stages {
-        stage("define var") {
+        stage("define vars") {
             steps {
-                echo "======= var ======="
+                echo "======= vars ======="
                 echo "${params.PORT}"
                 echo "${params.NJOB}"
                 echo "${params.NBUID}"
- //               sh 'cd Dockerfiles; pwd'
-
-            }
+             }
         }
         
-//        stage("copy artefact") {
-//            steps {
-//                echo "======= start building image ======="
-//                sh 'cd Dockerfiles; pwd'
-//            }
-//        }
+        stage("copy artefact") {
+            steps {
+                echo "======= copy artefact ======="
+                sh 'ls -la /var/lib/jenkins/jobs/grw1/builds/2/archive/java_app/target/'
+//                sh 'cp /var/lib/jenkins/jobs/grw1/builds/2/archive/java_app/target/app-ver.2.jar ./Dokerfiles'
+            }
+        }
         
         stage("create docker image") {
             steps {
