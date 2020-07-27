@@ -58,7 +58,7 @@ pipeline {
                 echo "======= start building image ======="
 //                sh 'cd Dockerfiles; pwd'
                 dir ('Dokerfiles') {
-                    sh 'docker build -t application:v${params.NBUID} .'
+                    sh "docker build -t application:v${params.NBUID} ."
 //                    sh 'docker images'
                 }
             }
