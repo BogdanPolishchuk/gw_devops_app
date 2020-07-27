@@ -3,9 +3,9 @@
 properties([
     disableConcurrentBuilds(),
     parameters([
-    	string(defaultValue: '8888', description: 'Enter port number in range 8100-9000', name: 'PORT', trim: false),
-        string(defaultValue: 'qwerty', description: 'Enter Name of Job', name: 'NJOB', trim: false),
-        string(defaultValue: '1', description: 'Enter Number of Build', name: 'NBUID', trim: false)
+//    	string(defaultValue: '8888', description: 'Enter port number in range 8100-9000', name: 'PORT', trim: false),
+        string(defaultValue: 'grw1', description: 'Enter Name of Job', name: 'NJOB', trim: false),
+        string(defaultValue: '2', description: 'Enter Number of Build', name: 'NBUID', trim: false)
     ])
 ])
 
@@ -21,7 +21,7 @@ pipeline {
         stage("define vars") {
             steps {
                 echo "======= vars ======="
-                echo "${params.PORT}"
+//                echo "${params.PORT}"
                 echo "${params.NJOB}"
                 echo "${params.NBUID}"
              }
@@ -37,11 +37,11 @@ pipeline {
             }
         }
         
-        stage("update Dockerfile") {
-            steps {
-                echo "======= update Dockerfile ======="
-                dir ('Dokerfiles') {
-                    sh "pwd"
+//        stage("update Dockerfile") {
+//            steps {
+//                echo "======= update Dockerfile ======="
+//                dir ('Dokerfiles') {
+//                    sh "pwd"
 //                    sh "echo 'ADD app-ver.${params.NBUID}.jar /java_project/' >> Dockerfile"
 //                    sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar"]' >> Dockerfile"
 //                   sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar", "--server.port=${params.PORT}"]' >> Dockerfile"
