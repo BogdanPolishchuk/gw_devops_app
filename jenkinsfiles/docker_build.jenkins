@@ -14,8 +14,9 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo "======= start building image ======="
-                dir ('Dokerfiles') {
-                    sh 'docker build -t java_app .'
+                sh 'pwd'
+//                dir ('Dokerfiles') {
+//                    sh 'docker build -t java_app .'
                 }
             }
         }
