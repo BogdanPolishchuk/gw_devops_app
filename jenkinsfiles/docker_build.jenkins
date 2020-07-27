@@ -1,6 +1,11 @@
 #!groovy
 //building docker image
-properties([disableConcurrentBuilds()])
+properties([
+    disableConcurrentBuilds(),
+    parameters([
+    	string(defaultValue: '8888', description: 'Enter port number in range 8100-9000', name: 'PORT', trim: false)
+    ])
+])
 
 pipeline {
     agent {
@@ -11,6 +16,23 @@ pipeline {
     timestamps()
     }
     stages {
+        stage("define var") {
+            steps {
+                echo "======= var ======="
+                echo "${params.PORT}"
+ //               sh 'cd Dockerfiles; pwd'
+
+            }
+        }
+        
+        stage("copy artefact") {
+            steps {
+                echo "======= start building image ======="
+                sh 'cd Dockerfiles; pwd'
+
+            }
+        }
+        
         stage("create docker image") {
             steps {
                 echo "======= start building image ======="
