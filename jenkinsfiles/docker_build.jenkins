@@ -32,7 +32,7 @@ pipeline {
                 echo "======= copy artefact ======="
                 sh "pwd"
 //                sh "ls -la /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/"
-                sh "cp /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/app-ver.${params.NBUID}.jar ./Dokerfiles/"
+                sh "cp /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/app-ver.${params.NBUID}.jar ./Dokerfiles/app.jar"
 //                sh 'cp /var/lib/jenkins/jobs/grw1/builds/2/archive/java_app/target/app-ver.2.jar ./Dokerfiles'
             }
         }
@@ -42,7 +42,7 @@ pipeline {
                 echo "======= update Dockerfile ======="
                 dir ('Dokerfiles') {
                     sh "pwd"
-                    sh "echo 'ADD app-ver.${params.NBUID}.jar /java_project/' >> Dockerfile"
+//                    sh "echo 'ADD app-ver.${params.NBUID}.jar /java_project/' >> Dockerfile"
 //                    sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar"]' >> Dockerfile"
 //                   sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar", "--server.port=${params.PORT}"]' >> Dockerfile"
                 }
