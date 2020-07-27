@@ -14,10 +14,11 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo "======= start building image ======="
-                sh 'cd Dockerfiles; pwd'
-//                dir ('Dokerfiles') {
+//                sh 'cd Dockerfiles; pwd'
+                dir ('Dokerfiles') {
 //                    sh 'docker build -t java_app .'
-//                }
+                    sh 'pwd'
+                }
             }
         }
     }
