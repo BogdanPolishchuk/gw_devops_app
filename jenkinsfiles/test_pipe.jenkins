@@ -87,7 +87,7 @@ node {
         sh "ls -lh ; cd ansible_roles&&ansible-playbook service.yml --extra-vars 'port=${params.PORT}'"
     }
 
-    stage("Availability test."){
+    stage("Availability test"){
         sh "sleep 15 ; curl -I http://172.31.7.209:${params.PORT}"
     }
 }
