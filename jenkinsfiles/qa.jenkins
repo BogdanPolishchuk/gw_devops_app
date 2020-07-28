@@ -35,6 +35,10 @@ node {
     
     }
  
+     stage("ADD HOSTS"){
+        sh "cp /hosts.txt ./ansible_roles/hosts.txt"
+    }
+ 
     stage("QA DEPLOY"){
         sh "ls -lh ; cd ansible_roles&&ansible-playbook qa_service.yml --extra-vars 'port=${params.PORT} job_name=${params.JOBNAME} build_number=${params.BUILDNUM}'"
     }
