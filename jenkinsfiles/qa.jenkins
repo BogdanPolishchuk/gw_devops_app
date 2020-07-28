@@ -1,0 +1,29 @@
+properties([
+    parameters([
+	string(defaultValue: '8888', description: 'Enter port number in range 8100-9000', name: 'PORT', trim: false),
+    string(defaultValue: 'grw1', description: 'Enter Job name', name: 'JOBNAME', trim: false),
+    string(defaultValue: '2', description: 'Enter buid number', name: 'BUILDNUM', trim: false)
+    ])
+])
+node {
+
+
+    stage("Clean"){
+        sh "uptime"
+        deleteDir()
+    }
+
+    stage("check ports number"){
+        sh "echo ${params.PORT}"
+        sh "echo ${params.JOBNAME}"
+        sh "echo ${params.BUILDNUM}"
+    }
+ 
+    stage("QA DEPLOY"){
+        sh "ls -lh ; cd ansible_roles&&ansible-playbook qa_service.yml --extra-vars 'port=${params.PORT} job_name=${params.JOBNAME} build_number=${params.BUILDNUM}'"
+    }
+
+    stage("Availability test"){
+        sh "sleep 15 ; curl -I http://172.31.2.140:${params.PORT}"
+    }
+}
