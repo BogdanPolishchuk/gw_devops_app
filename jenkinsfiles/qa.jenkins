@@ -1,4 +1,5 @@
 properties([
+    parameters([
     gitParameter(branch: '',
                      branchFilter: 'origin/(.*)',
                      defaultValue: 'master',
@@ -9,7 +10,6 @@ properties([
                      sortMode: 'NONE',
                      tagFilter: '*',
                      type: 'PT_BRANCH'),
-    parameters([
 	string(defaultValue: '8888', description: 'Enter port number in range 8100-9000', name: 'PORT', trim: false),
         string(defaultValue: 'grw1', description: 'Enter Job name', name: 'JOBNAME', trim: false),
         string(defaultValue: '2', description: 'Enter buid number', name: 'BUILDNUM', trim: false)
