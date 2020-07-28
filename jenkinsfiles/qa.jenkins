@@ -1,4 +1,14 @@
 properties([
+    gitParameter(branch: '',
+                     branchFilter: 'origin/(.*)',
+                     defaultValue: 'master',
+                     description: '',
+                     name: 'BRANCH',
+                     quickFilterEnabled: false,
+                     selectedValue: 'NONE',
+                     sortMode: 'NONE',
+                     tagFilter: '*',
+                     type: 'PT_BRANCH'),
     parameters([
 	string(defaultValue: '8888', description: 'Enter port number in range 8100-9000', name: 'PORT', trim: false),
         string(defaultValue: 'grw1', description: 'Enter Job name', name: 'JOBNAME', trim: false),
@@ -17,6 +27,12 @@ node {
         sh "echo ${params.PORT}"
         sh "echo ${params.JOBNAME}"
         sh "echo ${params.BUILDNUM}"
+    }
+ 
+     stage("CHECKOUT"){
+    
+        sh "git clone -b ${params.BRANCH} https://github.com/BogdanPolishchuk/gw_devops_app.git . --depth 1"
+    
     }
  
     stage("QA DEPLOY"){
