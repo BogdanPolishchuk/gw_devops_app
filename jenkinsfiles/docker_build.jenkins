@@ -73,7 +73,11 @@ pipeline {
         stage("check repositories") {
             steps {
                 echo "RNAME = ${env.RNAME}"
-                println(env.RNAME[1..-2])
+//                println(env.RNAME[1..-2])
+                script {
+                    def foo = env.RNAME[1..-2] 
+                    sh "echo ${foo}"
+                }
 //                sh "aws ecr describe-repositories | jq '.repositories[0].repositoryName'"
 //                sh "repo=$(aws ecr describe-repositories)"
 //                sh "string=$(echo $repo | jq '.repositories[0].repositoryName'"  // | sed -e "s/^.//;s/.$//")"
