@@ -70,9 +70,9 @@ pipeline {
         }
         
         
-        stage("check repositories") {
+        stage("Tag image & push to repositories") {
             steps {
-                echo "RNAME = ${env.RNAME}"
+                echo "Repository Name is ${env.RNAME}"
 //                println(env.RNAME[1..-2])
                 script {
                     def foo = env.RNAME[1..-2] 
