@@ -68,8 +68,8 @@ pipeline {
         stage("check repositories") {
             steps {
                 sh "repo=$(aws ecr describe-repositories)"
-                sh "string=$(echo $repo | jq '.repositories[0].repositoryName' | sed -e "s/^.//;s/.$//")"
-                sh "echo $string"
+                sh "string=$(echo $repo | jq '.repositories[0].repositoryName'"  // | sed -e "s/^.//;s/.$//")"
+                sh "echo $string | sed 's/.$//' | cut -c 2-"
 //                $reg | jq '.repositories[0].repositoryName' | sed 's/"//g'"
 
                 }
