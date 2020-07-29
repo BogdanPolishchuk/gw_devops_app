@@ -10,6 +10,11 @@ properties([
 ])
 
 pipeline {
+    
+    environment {
+        RNAME = "${sh(script:'aws ecr describe-repositories | jq .repositories[0].repositoryName', returnStdout: true).trim()}"
+    }
+    
     agent {
         label 'master'
     }
@@ -67,7 +72,9 @@ pipeline {
         
         stage("check repositories") {
             steps {
-                sh "aws ecr describe-repositories | jq '.repositories[0].repositoryName'"
+                echo "RNAME = ${env.RNAME}"
+                println(env.RNAME[1..-2])
+//                sh "aws ecr describe-repositories | jq '.repositories[0].repositoryName'"
 //                sh "repo=$(aws ecr describe-repositories)"
 //                sh "string=$(echo $repo | jq '.repositories[0].repositoryName'"  // | sed -e "s/^.//;s/.$//")"
 //                sh "echo $string | sed 's/.$//' | cut -c 2-"
