@@ -70,7 +70,7 @@ pipeline {
         }
         
         
-        stage("Tag image & push to repositories") {
+        stage("Tag image & push to repository") {
             steps {
                 echo "Repository Name is ${env.RNAME}"
 //                println(env.RNAME[1..-2])
