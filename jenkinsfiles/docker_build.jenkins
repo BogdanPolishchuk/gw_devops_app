@@ -77,6 +77,7 @@ pipeline {
                 script {
                     def foo = env.RNAME[1..-2] 
                     sh "docker tag application:v${params.NBUID} 089664509234.dkr.ecr.us-east-2.amazonaws.com/${foo}:v${params.NBUID}"
+                    sh "docker push 089664509234.dkr.ecr.us-east-2.amazonaws.com/${foo}:v${params.NBUID}"
                 }
 //                sh "aws ecr describe-repositories | jq '.repositories[0].repositoryName'"
 //                sh "repo=$(aws ecr describe-repositories)"
