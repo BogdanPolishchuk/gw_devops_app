@@ -73,7 +73,6 @@ pipeline {
 //                sh "echo $string | sed 's/.$//' | cut -c 2-"
 //                $reg | jq '.repositories[0].repositoryName' | sed 's/"//g'"
 
-                }
             }
         }
         
