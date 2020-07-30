@@ -76,11 +76,18 @@ pipeline {
                 sh "pwd"
                 dir ('template') {
                     sh "aws ecs register-task-definition --cli-input-json file://template.json"
-//                    sh "ls -la"
                 }
                 sh "aws ecs list-task-definitions"
             }
         }
+        
+        stage("run task in cluster as task") {
+            steps {
+                echo "======= run task in cluster as task ======="
+                sh "aws ecs run-task --cluster manual-cluster --task-definition new-ci-task --launch-type EC2 --count 1"
+            }
+        }
+        
         
     }
 }
