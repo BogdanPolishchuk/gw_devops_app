@@ -84,7 +84,7 @@ pipeline {
         stage("run task in cluster as task") {
             steps {
                 echo "======= run task in cluster as task ======="
-                sh "aws ecs run-task --cluster manual-cluster --task-definition new-ci-task --launch-type EC2 --count 1"
+                sh "aws ecs run-task --cluster manual-cluster --task-definition ${params.NTASK} --launch-type EC2 --count 1"
             }
         }
         
