@@ -36,35 +36,16 @@ pipeline {
             steps {
                 echo "======= copy artefact ======="
                 sh "pwd"
-//                sh "ls -la /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/"
                 sh "cp /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/app-ver.${params.NBUID}.jar ./Dokerfiles/app.jar"
-//                sh 'cp /var/lib/jenkins/jobs/grw1/builds/2/archive/java_app/target/app-ver.2.jar ./Dokerfiles'
             }
         }
         
-//        stage("update Dockerfile") {
-//            steps {
-//                echo "======= update Dockerfile ======="
-//                dir ('Dokerfiles') {
-//                    sh "pwd"
-//                    sh "echo 'ADD app-ver.${params.NBUID}.jar /java_project/' >> Dockerfile"
-//                    sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar"]' >> Dockerfile"
-//                   sh "echo 'CMD ["java", "-jar", "app-ver.${params.NBUID}.jar", "--server.port=${params.PORT}"]' >> Dockerfile"
-//                }
-                
-//                sh "ls -la /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/"
-//                sh "cp /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/app-ver.${params.NBUID}.jar ./Dokerfiles/"
-//                sh 'cp /var/lib/jenkins/jobs/grw1/builds/2/archive/java_app/target/app-ver.2.jar ./Dokerfiles'
-//            }
-//        }
-        
+       
         stage("create docker image") {
             steps {
                 echo "======= start building image ======="
-//                sh 'cd Dockerfiles; pwd'
                 dir ('Dokerfiles') {
                     sh "docker build -t application:v${params.NBUID} ."
-//                    sh 'docker images'
                 }
             }
         }
@@ -72,22 +53,23 @@ pipeline {
         
         stage("Tag image & push to repository") {
             steps {
+                echo "======= Tag image & push to repository ======="
                 echo "Repository Name is ${env.RNAME}"
-//                println(env.RNAME[1..-2])
                 script {
                     def foo = env.RNAME[1..-2] 
                     sh "docker tag application:v${params.NBUID} 089664509234.dkr.ecr.us-east-2.amazonaws.com/${foo}:v${params.NBUID}"
                     sh "docker push 089664509234.dkr.ecr.us-east-2.amazonaws.com/${foo}:v${params.NBUID}"
                 }
-//                sh "aws ecr describe-repositories | jq '.repositories[0].repositoryName'"
-//                sh "repo=$(aws ecr describe-repositories)"
-//                sh "string=$(echo $repo | jq '.repositories[0].repositoryName'"  // | sed -e "s/^.//;s/.$//")"
-//                sh "echo $string | sed 's/.$//' | cut -c 2-"
-//                $reg | jq '.repositories[0].repositoryName' | sed 's/"//g'"
-
             }
         }
         
+        stage("create task definition template") {
+            steps {
+                echo "======= create task definition template ======="
+                sh "pwd"
+//                sh "cp /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/app-ver.${params.NBUID}.jar ./Dokerfiles/app.jar"
+            }
+        }
         
     }
 }
