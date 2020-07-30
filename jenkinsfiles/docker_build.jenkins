@@ -67,6 +67,10 @@ pipeline {
             steps {
                 echo "======= create task definition template ======="
                 sh "pwd"
+                dir ('template') {
+                    sh "./test grw1 3 8666 > template.json"
+                    sh "ls -la"
+                }
 //                sh "cp /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/app-ver.${params.NBUID}.jar ./Dokerfiles/app.jar"
             }
         }
