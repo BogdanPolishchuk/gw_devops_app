@@ -53,9 +53,9 @@ pipeline {
         }
         
         
-        stage("Tag image & push to repository") {
+        stage("Tag image & push to repository & create template for task definition") {
             steps {
-                echo "======= Tag image & push to repository ======="
+                echo "======= Tag image & push to repository & create template for task definition ======="
                 echo "Repository Name is ${env.RNAME}"
                 script {
                     def foo = env.RNAME[1..-2] 
@@ -70,17 +70,17 @@ pipeline {
             }
         }
         
-//        stage("create task definition template") {
-//            steps {
-//                echo "======= create task definition template ======="
-//                sh "pwd"
-//                dir ('template') {
-//                    sh "./test grw1 3 8666 > template.json"
+        stage("create task definition") {
+            steps {
+                echo "======= create task definition======="
+                sh "pwd"
+                dir ('template') {
+                    sh "aws ecs register-task-definition --cli-input-json file://template.json"
 //                    sh "ls -la"
-//                }
-//                sh "cp /var/lib/jenkins/jobs/${params.NJOB}/builds/${params.NBUID}/archive/java_app/target/app-ver.${params.NBUID}.jar ./Dokerfiles/app.jar"
-//            }
-//        }
+                }
+                sh "aws ecs list-task-definitions"
+            }
+        }
         
     }
 }
