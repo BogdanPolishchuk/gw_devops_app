@@ -5,7 +5,7 @@ properties([
     parameters([
     	string(defaultValue: '8888', description: 'Enter port number in range 8100-9000', name: 'PORT', trim: false),
         string(defaultValue: 'ci-job', description: 'Enter Name of Job', name: 'NJOB', trim: false),
-        string(defaultValue: '3', description: 'Enter Number of Build', name: 'NBUID', trim: false)
+        string(defaultValue: '3', description: 'Enter Number of Build', name: 'NBUID', trim: false),
         string(defaultValue: 'ci-task', description: 'Enter Name for task definition', name: 'NTASK', trim: false)
     ])
 ])
