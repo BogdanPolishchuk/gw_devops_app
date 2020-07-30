@@ -44,6 +44,6 @@ node {
     }
 
     stage("Availability test"){
-        sh "sleep 15 ; curl -I http://172.31.14.107:${params.PORT}"
+        sh "sleep 15 ; curl -I http://172.31.4.205:${params.PORT}"
     }
 }
