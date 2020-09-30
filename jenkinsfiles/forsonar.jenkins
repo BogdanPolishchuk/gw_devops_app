@@ -1,0 +1,23 @@
+
+pipeline {
+
+    agent any
+
+    stages {
+        stage('Clone repo') {
+            steps {
+                cleanWs()
+                git branch: 'master',
+                    url: 'https://github.com/BogdanPolishchuk/gw_devops_app.git'
+            }
+        }
+
+        stage('build artefact') {
+            steps {
+                dir ('java_app') {
+                    sh "mvn clean install"
+                }
+            }
+        }
+    }
+}
