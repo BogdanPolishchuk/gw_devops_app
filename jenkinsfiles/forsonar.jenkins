@@ -14,11 +14,11 @@ pipeline {
 
         stage('build artefact') {
             steps {
-                dir ('java_app') {
-                   withMaven {
-                       sh "mvn clean install"
-                   }
-                }
+               git url: 'https://github.com/BogdanPolishchuk/gw_devops_app.git'
+               withMaven {
+                   sh "mvn clean install"
+               }
+               
             }
         }
     }
