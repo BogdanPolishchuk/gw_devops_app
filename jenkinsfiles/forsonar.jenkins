@@ -15,7 +15,9 @@ pipeline {
         stage('build artefact') {
             steps {
                 dir ('java_app') {
-                    sh "mvn clean install"
+                   withMaven {
+                       sh "mvn clean install"
+                   }
                 }
             }
         }
